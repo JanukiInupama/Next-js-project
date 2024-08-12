@@ -28,6 +28,7 @@ export default function Home() {
 
         <Text content="Lorem ipsum odor amet, consectetuer adipiscing elit. Commodo scelerisque elit habitasse quisque elementum non senectus. Dictum fames cras condimentum convallis ultrices, per dolor. Elit vehicula sagittis accumsan malesuada sapien litora maximus ullamcorper. Ipsum sodales vestibulum pretium finibus odio finibus tortor. Ante interdum ac placerat fusce donec mus curabitur; ante ornare. At etiam habitasse scelerisque parturient fermentum tempus aenean. Vel himenaeos vel convallis purus massa vitae nulla torquent. Convallis semper orci, proin habitasse eleifend mus iaculis laoreet." 
                 mobileNote="Note: Lorem ipsum odor amet, consectetuer adipiscing elit. Sociosqu montes ad sodales egestas turpis eget rhoncus. Cubilia molestie rhoncus; eu natoque praesent luctus. Magnis venenatis iaculis porta senectus maecenas donec platea. Facilisis eu sodales ligula massa odio est torquent eleifend posuere. Sociosqu potenti egestas taciti enim et. Ridiculus magnis velit vestibulum ac facilisi dis vestibulum sed. Primis velit sit consectetur ridiculus aliquam elit phasellus suspendisse. Efficitur conubia nulla nec cubilia id enim."/>
+
       </main>
       
 
