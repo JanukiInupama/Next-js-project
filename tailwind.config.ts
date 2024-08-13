@@ -1,22 +1,11 @@
-import type { Config } from "tailwindcss";
-
-const config: Config = {
+// tailwind.config.js
+module.exports = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {
-      screens: {
-        'md':'769px',
-        'sm': '768 px'
-        
-      }
-    },
+    extend: {},
   },
-  plugins: [
-    require('@tailwindcss/aspect-ratio'),
-  ],
-};
-export default config;
+  plugins: [],
+}
