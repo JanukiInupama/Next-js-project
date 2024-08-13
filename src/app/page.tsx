@@ -16,24 +16,24 @@ const Home: React.FC = () => {
   const [cards, setCards] = useState<CardProps[]>([]);
 
   useEffect(() => {
-    const fetchCards = () => {
-      fetch('https://hp-api.onrender.com/api/characters')
-        .then((response) => response.json())
-        .then((data) => {
-          const cardData = data.slice(0, 3).map((char :any) => ({
-            imageSrc: char.image,
-            altText: char.name,
-          }));
-          setCards(cardData);
-        })
-        .catch((error) => {
-          console.error('Error fetching data:', error);
-        });
+    const fetchCards = async () => {
+      try {
+        const response = await fetch('https://hp-api.onrender.com/api/characters');
+        const data = await response.json();
+        
+        const cardData = data.slice(0, 3).map((char: any) => ({
+          imageSrc: char.image, 
+          altText: char.name,  
+        }));
+        
+        setCards(cardData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
     };
-  
+
     fetchCards();
   }, []);
-  
 
   return (
     <div className="min-h-screen flex flex-col">
