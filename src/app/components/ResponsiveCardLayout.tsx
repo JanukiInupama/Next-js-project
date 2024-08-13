@@ -36,9 +36,8 @@ const ResponsiveCardLayout: React.FC<ResponsiveCardLayoutProps> = ({ cards }) =>
   };
 
   if (isMobile) {
-    
     return (
-      <div className="relative w-full overflow-hidden">
+      <div className="relative w-full max-w-sm mx-auto overflow-hidden">
         <div 
           className="flex transition-transform duration-300 ease-in-out" 
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -66,7 +65,7 @@ const ResponsiveCardLayout: React.FC<ResponsiveCardLayoutProps> = ({ cards }) =>
   }
 
   return (
-    <div className="flex flex-wrap justify-center">
+    <div className="flex justify-center space-x-4">
       {cards.map((card, index) => (
         <Card key={index} imageSrc={card.imageSrc} altText={card.altText} />
       ))}

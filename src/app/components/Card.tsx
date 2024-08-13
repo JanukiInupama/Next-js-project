@@ -8,13 +8,13 @@ type CardProps = {
 
 const Card: React.FC<CardProps> = ({ imageSrc, altText }) => {
   return (
-    <div className="bg-white shadow-md rounded-lg p-5 m-6 md:w-72 lg:w-96">
+    <div className="bg-white shadow-md rounded-lg p-5 w-full md:w-1/3 max-w-sm">
       <Image
         src={imageSrc}
         alt={altText}
         width={400} 
         height={200} 
-        className="w-full h-full object-cover"
+        className="w-full h-auto object-cover"
       />
     </div>
   );
