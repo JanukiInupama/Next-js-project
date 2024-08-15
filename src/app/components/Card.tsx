@@ -21,13 +21,15 @@ const Card: React.FC<CardProps> = ({ imageSrc, altText }) => {
 
   return (
     <div className="bg-white shadow-md rounded-lg p-5 w-full md:w-1/3 max-w-sm">
-      <Image
-        src={imageSrc}
-        alt={altText}
-        width={400}
-        height={200}
-        className="w-full h-auto object-cover"
-      />
+      <div className="relative w-full h-96"> 
+        <Image
+          src={imageSrc}
+          alt={altText}
+          layout="fill"
+          objectFit="contain"
+          className="rounded-lg"
+        />
+      </div>
       <div className="mt-4 flex justify-between items-center">
         <button
           onClick={handleLike}
