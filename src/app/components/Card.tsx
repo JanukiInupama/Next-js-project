@@ -1,5 +1,10 @@
+"use client";
+
 import React from 'react';
 import Image from 'next/image';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleLike } from '../redux/likesSlice';
+import { RootState } from '../redux/store';
 
 type CardProps = {
   imageSrc: string;
@@ -7,15 +12,31 @@ type CardProps = {
 };
 
 const Card: React.FC<CardProps> = ({ imageSrc, altText }) => {
+  const dispatch = useDispatch();
+  const likeState = useSelector((state: RootState) => state.likes[altText] || { count: 0, liked: false });
+
+  const handleLike = () => {
+    dispatch(toggleLike(altText));
+  };
+
   return (
     <div className="bg-white shadow-md rounded-lg p-5 w-full md:w-1/3 max-w-sm">
       <Image
         src={imageSrc}
         alt={altText}
-        width={400} 
-        height={200} 
+        width={400}
+        height={200}
         className="w-full h-auto object-cover"
       />
+      <div className="mt-4 flex justify-between items-center">
+        <button
+          onClick={handleLike}
+          className={`py-2 px-4 rounded ${likeState.liked ? 'bg-blue-700' : 'bg-blue-500'} hover:bg-blue-700 text-white font-bold`}
+        >
+          {likeState.liked ? 'Unlike' : 'Like'}
+        </button>
+        <span className="text-gray-700 font-semibold">{likeState.count} likes</span>
+      </div>
     </div>
   );
 };
