@@ -4,6 +4,7 @@ import React from 'react';
 import Card from './Card';
 
 type CardProps = {
+  id: string;
   imageSrc: string;
   altText: string;
 };
@@ -42,9 +43,9 @@ const ResponsiveCardLayout: React.FC<ResponsiveCardLayoutProps> = ({ cards }) =>
           className="flex transition-transform duration-300 ease-in-out" 
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
-          {cards.map((card, index) => (
-            <div key={index} className="w-full flex-shrink-0">
-              <Card imageSrc={card.imageSrc} altText={card.altText} />
+          {cards.map((card) => (
+            <div key={card.id} className="w-full flex-shrink-0">
+              <Card id={card.id} imageSrc={card.imageSrc} altText={card.altText} />
             </div>
           ))}
         </div>
@@ -66,8 +67,8 @@ const ResponsiveCardLayout: React.FC<ResponsiveCardLayoutProps> = ({ cards }) =>
 
   return (
     <div className="flex justify-center space-x-4">
-      {cards.map((card, index) => (
-        <Card key={index} imageSrc={card.imageSrc} altText={card.altText} />
+      {cards.map((card) => (
+        <Card key={card.id} id={card.id} imageSrc={card.imageSrc} altText={card.altText} />
       ))}
     </div>
   );

@@ -7,16 +7,17 @@ import { toggleLike } from '../redux/likesSlice';
 import { RootState } from '../redux/store';
 
 type CardProps = {
+  id: string;
   imageSrc: string;
   altText: string;
 };
 
-const Card: React.FC<CardProps> = ({ imageSrc, altText }) => {
+const Card: React.FC<CardProps> = ({ id, imageSrc, altText }) => {
   const dispatch = useDispatch();
-  const likeState = useSelector((state: RootState) => state.likes[altText] || { count: 0, liked: false });
+  const likeState = useSelector((state: RootState) => state.likes.likes[id] || { count: 0, liked: false });
 
   const handleLike = () => {
-    dispatch(toggleLike(altText));
+    dispatch(toggleLike(id));
   };
 
   return (
