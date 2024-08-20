@@ -13,7 +13,7 @@ type ResponsiveCardLayoutProps = {
   cards: CardProps[];
 };
 
-const ResponsiveCardLayout: React.FC<ResponsiveCardLayoutProps> = ({ cards }) => {
+const ResponsiveCardLayout = ({ cards }: ResponsiveCardLayoutProps) => {
   const [isMobile, setIsMobile] = React.useState(false);
   const [currentIndex, setCurrentIndex] = React.useState(0);
 

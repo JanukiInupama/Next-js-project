@@ -12,7 +12,7 @@ type CardProps = {
   altText: string;
 };
 
-const Card: React.FC<CardProps> = ({ id, imageSrc, altText }) => {
+const Card = ({ id, imageSrc, altText }: CardProps) => {
   const dispatch = useDispatch();
   const likeState = useSelector((state: RootState) => state.likes.likes[id] || { count: 0, liked: false });
 
