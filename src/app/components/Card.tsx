@@ -14,7 +14,9 @@ type CardProps = {
 
 const Card = ({ id, imageSrc, altText }: CardProps) => {
   const dispatch = useDispatch();
-  const likeState = useSelector((state: RootState) => state.likes.likes[id] || { count: 0, liked: false });
+  const card = useSelector((state: RootState) => 
+    state.likes.cards.find(card => card.id === id) || { count: 0, liked: false }
+  );
 
   const handleLike = () => {
     dispatch(toggleLike(id));
@@ -34,11 +36,11 @@ const Card = ({ id, imageSrc, altText }: CardProps) => {
       <div className="mt-4 flex justify-between items-center">
         <button
           onClick={handleLike}
-          className={`py-2 px-4 rounded ${likeState.liked ? 'bg-blue-700' : 'bg-blue-500'} hover:bg-blue-700 text-white font-bold`}
+          className={`py-2 px-4 rounded ${card.liked ? 'bg-blue-700' : 'bg-blue-500'} hover:bg-blue-700 text-white font-bold`}
         >
-          {likeState.liked ? 'Unlike' : 'Like'}
+          {card.liked ? 'Unlike' : 'Like'}
         </button>
-        <span className="text-gray-700 font-semibold">{likeState.count} likes</span>
+        <span className="text-gray-700 font-semibold">{card.count} likes</span>
       </div>
     </div>
   );
