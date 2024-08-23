@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleLike } from '../redux/likesSlice';
 import { RootState } from '../redux/store';
+
 import Modal from './Modal';
 
 type CardProps = {
@@ -13,9 +14,9 @@ type CardProps = {
   altText: string;
 };
 
-const Card = ({ id, imageSrc, altText }: CardProps) => {
+const Card: React.FC<CardProps> = ({ id, imageSrc, altText }) => {
   const dispatch = useDispatch();
-  const card = useSelector((state: RootState) => 
+  const card = useSelector((state: RootState) =>
     state.likes.cards.find(card => card.id === id) || { count: 0, liked: false }
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -55,28 +56,31 @@ const Card = ({ id, imageSrc, altText }: CardProps) => {
         </div>
       </div>
 
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <div className="flex flex-col items-center">
-          <Image
-            src={imageSrc}
-            alt={altText}
-            width={400}
-            height={400}
-            objectFit="contain"
-            className="rounded-lg mb-4"
-          />
-          <h2 className="text-xl font-bold mb-4">{altText}</h2>
-          <div className="flex items-center space-x-4">
-            <button
-              onClick={handleLike}
-              className={`py-2 px-4 rounded ${card.liked ? 'bg-blue-700' : 'bg-blue-500'} hover:bg-blue-700 text-white font-bold`}
-            >
-              {card.liked ? 'Unlike' : 'Like'}
-            </button>
-            <span className="text-gray-700 font-semibold">{card.count} likes</span>
+      {/* Render Modal outside the carousel */}
+      {isModalOpen && (
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+          <div className="flex flex-col items-center">
+            <Image
+              src={imageSrc}
+              alt={altText}
+              width={400}
+              height={400}
+              objectFit="contain"
+              className="rounded-lg mb-4"
+            />
+            <h2 className="text-xl font-bold mb-4">{altText}</h2>
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={handleLike}
+                className={`py-2 px-4 rounded ${card.liked ? 'bg-blue-700' : 'bg-blue-500'} hover:bg-blue-700 text-white font-bold`}
+              >
+                {card.liked ? 'Unlike' : 'Like'}
+              </button>
+              <span className="text-gray-700 font-semibold">{card.count} likes</span>
+            </div>
           </div>
-        </div>
-      </Modal>
+        </Modal>
+      )}
     </>
   );
 };
