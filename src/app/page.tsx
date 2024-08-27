@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from './redux/store';
 import { fetchCards } from './redux/likesSlice';
 
+
 import Header from './components/Header';
 import Banner from './components/Banner';
 import Text from './components/Text';
@@ -78,3 +79,5 @@ const Home: React.FC = () => {
 };
 
 export default Home;
+
+
