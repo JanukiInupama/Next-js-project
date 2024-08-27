@@ -1,4 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { fetchMovies } from '../server/api';
+
 
 interface CardData {
   id: string;
@@ -21,16 +23,9 @@ const initialState: LikesState = {
 };
 
 export const fetchCards = createAsyncThunk('likes/fetchCards', async () => {
-  const response = await fetch('https://hp-api.onrender.com/api/characters');
-  const data = await response.json();
-  return data.slice(0, 3).map((char: any) => ({
-    id: char.id || `${char.name}-${Math.random()}`,
-    imageSrc: char.image,
-    altText: char.name,
-    count: 0,
-    liked: false,
-  }));
+  return await fetchMovies();
 });
+
 
 const likesSlice = createSlice({
   name: 'likes',
@@ -62,3 +57,5 @@ const likesSlice = createSlice({
 
 export const { toggleLike } = likesSlice.actions;
 export default likesSlice.reducer;
+
+

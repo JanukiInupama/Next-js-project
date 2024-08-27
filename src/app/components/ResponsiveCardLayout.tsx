@@ -101,3 +101,5 @@ const ResponsiveCardLayout = ({ cards }: ResponsiveCardLayoutProps) => {
 };
 
 export default ResponsiveCardLayout;
+
+
