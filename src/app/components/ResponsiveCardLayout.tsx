@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState, AppDispatch } from '../redux/store';
-import { fetchCards } from '../redux/likesSlice';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
 
 import Card from './Card';
 
@@ -13,13 +12,8 @@ type CardProps = {
   altText: string;
 };
 
-type ResponsiveCardLayoutProps = {
-  cards: CardProps[];
-};
-
-const ResponsiveCardLayout = ({ cards }: ResponsiveCardLayoutProps) => {
-  const dispatch = useDispatch<AppDispatch>();
-  const { status, error } = useSelector((state: RootState) => state.likes);
+const ResponsiveCardLayout = () => {
+  const { cards, status, error } = useSelector((state: RootState) => state.likes);
   const [isMobile, setIsMobile] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -33,12 +27,6 @@ const ResponsiveCardLayout = ({ cards }: ResponsiveCardLayoutProps) => {
 
     return () => window.removeEventListener('resize', checkIsMobile);
   }, []);
-
-  useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchCards());
-    }
-  }, [status, dispatch]);
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % cards.length);
@@ -101,5 +89,3 @@ const ResponsiveCardLayout = ({ cards }: ResponsiveCardLayoutProps) => {
 };
 
 export default ResponsiveCardLayout;
-
-
