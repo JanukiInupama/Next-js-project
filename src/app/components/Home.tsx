@@ -1,8 +1,6 @@
 'use client';
 
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-
 import Header from './Header';
 import Banner from './Banner';
 import Text from './Text';
@@ -31,7 +29,7 @@ const Home: React.FC = () => {
 
           content="Lorem ipsum odor amet, consectetuer adipiscing elit. Commodo scelerisque elit habitasse quisque elementum non senectus. Dictum fames cras condimentum convallis ultrices, per dolor. Elit vehicula sagittis accumsan malesuada sapien litora maximus ullamcorper. Ipsum sodales vestibulum pretium finibus odio finibus tortor. Ante interdum ac placerat fusce donec mus curabitur; ante ornare. At etiam habitasse scelerisque parturient fermentum tempus aenean. Vel himenaeos vel convallis purus massa vitae nulla torquent. Convallis semper orci, proin habitasse eleifend mus iaculis laoreet."
 
-          mobileNote="Note: Lorem ipsum odor amet..."
+          mobileNote="Lorem ipsum odor amet, consectetuer adipiscing elit. Commodo scelerisque elit habitasse quisque elementum non senectus. Dictum fames cras condimentum convallis ultrices, per dolor. Elit vehicula sagittis accumsan malesuada sapien litora maximus ullamcorper. Ipsum sodales vestibulum pretium finibus odio finibus tortor. Ante interdum ac placerat fusce donec mus curabitur; ante ornare. At etiam habitasse scelerisque parturient fermentum tempus aenean. Vel himenaeos vel convallis purus massa vitae nulla torquent. Convallis semper orci, proin habitasse eleifend mus iaculis laoreet."
 
         />
 

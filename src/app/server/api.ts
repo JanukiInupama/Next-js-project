@@ -20,6 +20,6 @@ export async function fetchMovies() {
     }));
   } catch (error) {
     console.error('There was a problem with the fetch operation:', error);
-    throw new Error('Failed to fetch movies. Please check your internet connection and try again.');
+    throw new Error('Failed to fetch movies.');
   }
 }
