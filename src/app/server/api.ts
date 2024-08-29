@@ -6,7 +6,7 @@ export async function fetchMovies() {
     const response = await fetch(`${API_BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`);
 
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error('Failed to fetch movies. Please try again later.');
     }
 
     const data = await response.json();
@@ -20,6 +20,6 @@ export async function fetchMovies() {
     }));
   } catch (error) {
     console.error('There was a problem with the fetch operation:', error);
-    throw error;
+    throw new Error('Failed to fetch movies.');
   }
 }

@@ -34,9 +34,14 @@ const likesSlice = createSlice({
     setCards: (state, action: PayloadAction<CardData[]>) => {
       state.cards = action.payload;
       state.status = 'succeeded';
+      state.error = null;
+    },
+    setError: (state, action: PayloadAction<string>) => {
+      state.status = 'failed';
+      state.error = action.payload;
     },
   },
 });
 
-export const { toggleLike, setCards } = likesSlice.actions;
+export const { toggleLike, setCards, setError } = likesSlice.actions;
 export default likesSlice.reducer;
