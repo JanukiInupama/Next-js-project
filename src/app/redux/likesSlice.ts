@@ -1,8 +1,6 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { fetchMovies } from '../server/api';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-
-interface CardData {
+export interface CardData {
   id: string;
   imageSrc: string;
   altText: string;
@@ -10,7 +8,7 @@ interface CardData {
   liked: boolean;
 }
 
-interface LikesState {
+export interface LikesState {
   cards: CardData[];
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
@@ -21,11 +19,6 @@ const initialState: LikesState = {
   status: 'idle',
   error: null
 };
-
-export const fetchCards = createAsyncThunk('likes/fetchCards', async () => {
-  return await fetchMovies();
-});
-
 
 const likesSlice = createSlice({
   name: 'likes',
@@ -38,24 +31,12 @@ const likesSlice = createSlice({
         card.count += card.liked ? 1 : -1;
       }
     },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchCards.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(fetchCards.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.cards = action.payload;
-      })
-      .addCase(fetchCards.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message ?? 'Failed to fetch cards';
-      });
+    setCards: (state, action: PayloadAction<CardData[]>) => {
+      state.cards = action.payload;
+      state.status = 'succeeded';
+    },
   },
 });
 
-export const { toggleLike } = likesSlice.actions;
+export const { toggleLike, setCards } = likesSlice.actions;
 export default likesSlice.reducer;
-
-
