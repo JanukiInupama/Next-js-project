@@ -1,35 +1,23 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import likesReducer, { setCards, LikesState, CardData } from '../redux/likesSlice';
-import Home from './Home';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setCards, CardData } from "../redux/likesSlice";
+import Home from "./Home";
 
 interface HomeWrapperProps {
   initialMovies: CardData[];
   initialError: string | null;
 }
 
-const HomeWrapper: React.FC<HomeWrapperProps> = ({ initialMovies, initialError }) => {
+const HomeWrapper: React.FC<HomeWrapperProps> = ({
+  initialMovies,
+  initialError,
+}) => {
   const [error, setError] = useState(initialError);
+  const dispatch = useDispatch();
 
-  const initialState: LikesState = {
-    cards: initialMovies,
-    status: initialError ? 'failed' : 'succeeded',
-    error: initialError,
-  };
-
-  const store = configureStore({
-    reducer: {
-      likes: likesReducer,
-    },
-    preloadedState: {
-      likes: initialState,
-    },
-  });
-
-  store.dispatch(setCards(initialMovies));
+  dispatch(setCards(initialMovies));
 
   const handleClose = () => {
     setError(null);
@@ -40,7 +28,7 @@ const HomeWrapper: React.FC<HomeWrapperProps> = ({ initialMovies, initialError }
   };
 
   return (
-    <Provider store={store}>
+    <>
       {error && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg max-w-sm w-full">
@@ -64,7 +52,7 @@ const HomeWrapper: React.FC<HomeWrapperProps> = ({ initialMovies, initialError }
         </div>
       )}
       <Home />
-    </Provider>
+    </>
   );
 };
 
