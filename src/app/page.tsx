@@ -1,5 +1,5 @@
-import { fetchMovies } from './server/api';
-import HomeWrapper from './components/HomeWrapper';
+import { fetchMovies } from "./server/api";
+import HomeWrapper from "../components/HomeWrapper";
 
 export default async function Page() {
   let initialMovies = [];
@@ -11,9 +11,11 @@ export default async function Page() {
     if (error instanceof Error) {
       initialError = error.message;
     } else {
-      initialError = 'An unknown error occurred';
+      initialError = "An unknown error occurred";
     }
   }
 
-  return <HomeWrapper initialMovies={initialMovies} initialError={initialError} />;
+  return (
+    <HomeWrapper initialMovies={initialMovies} initialError={initialError} />
+  );
 }
