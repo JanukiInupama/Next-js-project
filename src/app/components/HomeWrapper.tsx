@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setCards, CardData } from "../redux/likesSlice";
 import Home from "./Home";
@@ -17,7 +17,13 @@ const HomeWrapper: React.FC<HomeWrapperProps> = ({
   const [error, setError] = useState(initialError);
   const dispatch = useDispatch();
 
-  dispatch(setCards(initialMovies));
+  useEffect(() => {
+    if (initialError) {
+      setError(initialError);
+    } else {
+      dispatch(setCards(initialMovies));
+    }
+  }, [initialError, initialMovies]);
 
   const handleClose = () => {
     setError(null);
