@@ -1,0 +1,3 @@
+// move component and redux folders to src root
+// remove redux provider from homePageWrapper
+// create provider wrapper separately
