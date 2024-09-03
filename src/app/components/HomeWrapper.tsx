@@ -14,7 +14,7 @@ const HomeWrapper: React.FC<HomeWrapperProps> = ({
   initialMovies,
   initialError,
 }) => {
-  const [error, setError] = useState(initialError);
+  const [error, setError] = useState<string | null>(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
