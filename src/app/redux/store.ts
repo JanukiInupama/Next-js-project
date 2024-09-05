@@ -1,12 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import likesReducer from './likesSlice';
+import likesReducer, { LikesState } from '../redux/likesSlice';
 
-export const store = configureStore({
-  reducer: {
-    likes: likesReducer,
-  },
-});
-
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
-
+const createMockStore = (state: LikesState) => {
+  return configureStore({
+    reducer: {
+      likes: likesReducer,
+    },
+    preloadedState: { likes: state }, // Ensure 'likes' is used correctly
+  });
+};
