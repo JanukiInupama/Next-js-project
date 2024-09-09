@@ -1,11 +1,16 @@
-"use client";
-
 import { Inter } from "next/font/google";
+import { Metadata } from "next";
 import "./globals.css";
-import { Provider } from 'react-redux';
-import { store } from './redux/store';
+import ReduxProvider from './redux/provider'; // Correct path to `provider.tsx`
 
 const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "Assignment",
+  icons: {
+    icon: './icon/logo.png', 
+  },
+};
 
 export default function RootLayout({
   children,
@@ -15,9 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Provider store={store}>
+        <ReduxProvider>
           {children}
-        </Provider>
+        </ReduxProvider>
       </body>
     </html>
   );
